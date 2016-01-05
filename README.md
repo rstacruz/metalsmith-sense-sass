@@ -4,12 +4,17 @@ A sensible distribution of [Sass][] for [Metalsmith][].
 
 - combines [metalsmith-sass][] and [metalsmith-autoprefixer][]
 - compresses output on production
+- adds source maps in development mode
 - ignores sass partials (`_*.sass`)
 
 Available options:
 
 - `sass` - options to pass to metalsmith-sass.
 - `autoprefixer` - options to pass to metalsmith-autoprefixer.
+
+Environment variables:
+
+- `NODE_ENV` (environment variable) - set to `production` to enable compression and disable source maps.
 
 [Metalsmith]: http://www.metalsmith.io/
 [Sass]: http://sass-lang.com/
