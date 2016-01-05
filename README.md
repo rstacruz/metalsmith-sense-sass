@@ -7,6 +7,8 @@ A sensible distribution of [Sass][] for [Metalsmith][].
 - adds source maps in development mode
 - ignores sass partials (`_*.sass`)
 
+[![Status](https://travis-ci.org/rstacruz/metalsmith-sense-sass.svg?branch=master)](https://travis-ci.org/rstacruz/metalsmith-sense-sass "See test builds")
+
 Available options:
 
 - `sass` - options to pass to metalsmith-sass.
