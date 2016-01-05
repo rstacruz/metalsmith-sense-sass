@@ -16,6 +16,31 @@ Available options:
 [metalsmith-sass]: https://www.npmjs.com/package/metalsmith-sass
 [metalsmith-autoprefixer]: https://www.npmjs.com/package/metalsmith-autoprefixer
 
+## Usage
+
+When using `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-sense-sass": {}
+  }
+}
+```
+
+When using `metalsmith.js`:
+
+```js
+var ms = new Metalsmith(__dirname)
+  .source('src')
+  .destination('public')
+  .use(require('metalsmith-sense-sass')())
+```
+
+## Also see
+
+Also consider [metalsmith-start](https://www.npmjs.com/package/metalsmith-start) as a convenient development server with LiveReload support and more.
+
 ## Thanks
 
 **metalsmith-sense-sass** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
