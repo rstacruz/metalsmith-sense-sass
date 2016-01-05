@@ -8,7 +8,7 @@ module.exports = stack(function senseCss (options) {
   return ware()
     .use(require('metalsmith-ignore')([ '**/_*.{scss,sass}' ]))
     .use(require('metalsmith-sass')(options.sass))
-    .use(require('metalsmith-autoprefixer')())
+    .use(require('metalsmith-autoprefixer')(options.autoprefixer))
 })
 
 /*
