@@ -22,8 +22,8 @@ function sassDefaults () {
   if (process.env.NODE_ENV !== 'production') {
     return {
       outputStyle: 'expanded',
-      sourceMap: true,
-      sourceMapContents: true
+      sourceMapEmbed: true,
+      sourcemapContents: true
     }
   } else {
     return {
