@@ -4,6 +4,7 @@ A sensible distribution of [Sass][] for [Metalsmith][].
 
 - combines [metalsmith-sass][] and [metalsmith-autoprefixer][]
 - compresses output on production
+- ignores sass partials (`_*.sass`)
 
 Available options:
 
