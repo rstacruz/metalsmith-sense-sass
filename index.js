@@ -1,15 +1,18 @@
-var stack = require('./lib/make_stack')
 var ware = require('ware')
 var assign = require('object-assign')
 
-module.exports = stack(function senseCss (options) {
+module.exports = function (options) {
+  if (!options) options = {}
   options.sass = assign({}, sassDefaults(), options.sass || {})
 
-  return ware()
-    .use(require('metalsmith-ignore')([ '**/_*.{scss,sass}' ]))
-    .use(require('metalsmith-sass')(options.sass))
-    .use(require('metalsmith-autoprefixer')(options.autoprefixer))
-})
+  return function (files, ms, done) {
+    ware()
+      .use(require('metalsmith-ignore')([ '**/_*.{scss,sass}' ]))
+      .use(require('metalsmith-sass')(options.sass))
+      .use(require('metalsmith-autoprefixer')(options.autoprefixer))
+      .run(files, ms, done)
+  }
+}
 
 /*
  * Private: sets sass default options
