@@ -1,6 +1,6 @@
 # metalsmith-sense-sass
 
-A sensible distribution of [Sass][] for [Metalsmith][].
+> A sensible distribution of [Sass][] for [Metalsmith][].
 
 - uses [metalsmith-sass][] with environment-specific defaults
 	- compresses output on production
@@ -63,6 +63,10 @@ npm install --save metalsmith-sense-sass postcss-cssnext
 [postcss-cssnext]: https://www.npmjs.com/package/postcss-cssnext
 
 For other installation options (eg, using other postcss plugins), see [Installation](docs/installation.md).
+
+## Upgrading from 1.x
+
+metalsmith-sense-sass 1.x uses autoprefixer by default, which 2.x doesn't anymore. To upgrade and keep the old behavior, simply install [postcss-cssnext][] in your project—cssnext includes autoprefixer, and metalsmith-sense-sass will automatically use cssnext if it's available.
 
 ## Also see
 
