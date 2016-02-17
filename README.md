@@ -10,17 +10,25 @@ A sensible distribution of [Sass][] for [Metalsmith][].
 
 [![Status](https://travis-ci.org/rstacruz/metalsmith-sense-sass.svg?branch=master)](https://travis-ci.org/rstacruz/metalsmith-sense-sass "See test builds")
 
-Available options:
+## Options
 
-- `sass` - options to pass to metalsmith-sass.
-- `postcss` - plugins to load for postcss. This is in the format of a key/value object, where keys are string package names, and the values are options to be passed to each plugin.
+```js
+require('metalsmith-sense-sass')(options)
+```
 
-Environment variables:
+#### Available options:
 
-- `NODE_ENV` (environment variable) - set to `production` to enable compression and disable source maps.
+- `sass` *(Object)* — Options to pass to metalsmith-sass. See [node-sass][] for a list of available options.
+
+- `postcss` *(Object)* — List of plugins to load for postcss. This is in the format of a key/value object, where keys are string package names, and the values are options to be passed to each plugin.
+
+#### Environment variables:
+
+- `NODE_ENV` *(environment variable)* — set to `production` to enable compression and disable source maps.
 
 [Metalsmith]: http://www.metalsmith.io/
 [Sass]: http://sass-lang.com/
+[node-sass]: https://github.com/sass/node-sass#options
 [metalsmith-sass]: https://www.npmjs.com/package/metalsmith-sass
 [metalsmith-postcss]: https://www.npmjs.com/package/metalsmith-postcss
 
@@ -32,24 +40,24 @@ It's recommended to use this with [postcss-cssnext][], which will take care of v
 npm install --save metalsmith-sense-sass postcss-cssnext
 ```
 
-When using `metalsmith.json`:
+* When using `metalsmith.json`:
 
-```json
-{
-  "plugins": {
-    "metalsmith-sense-sass": {}
-  }
-}
-```
+	```json
+	{
+	  "plugins": {
+	    "metalsmith-sense-sass": {}
+	  }
+	}
+	```
 
-When using `metalsmith.js`:
+* When using `metalsmith.js`:
 
-```js
-var ms = new Metalsmith(__dirname)
-  .source('src')
-  .destination('public')
-  .use(require('metalsmith-sense-sass')())
-```
+	```js
+	var ms = new Metalsmith(__dirname)
+	  .source('src')
+	  .destination('public')
+	  .use(require('metalsmith-sense-sass')())
+	```
 
 [postcss-cssnext]: https://www.npmjs.com/package/postcss-cssnext
 
