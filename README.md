@@ -2,10 +2,11 @@
 
 A sensible distribution of [Sass][] for [Metalsmith][].
 
-- combines [metalsmith-sass][] and [metalsmith-postcss][]
-- uses [postcss-cssnext][] when available
-- compresses output on production
-- adds source maps in development mode
+- uses [metalsmith-sass][] with environment-specific defaults
+	- compresses output on production
+	- adds source maps in development mode
+- uses [metalsmith-postcss][] for optional postcss plugins to be used after Sass
+- uses [postcss-cssnext][] when available (for vendor prefix polyfills and more)
 - ignores sass partials (`_*.sass`)
 
 [![Status](https://travis-ci.org/rstacruz/metalsmith-sense-sass.svg?branch=master)](https://travis-ci.org/rstacruz/metalsmith-sense-sass "See test builds")
