@@ -4,7 +4,7 @@ var assign = require('object-assign')
 module.exports = function (options) {
   if (!options) options = {}
   options.sass = assign({}, sassDefaults(), options.sass || {})
-  options.postcss = assign({}, postcssDefaults(), options.postcss || {})
+  options.postcss = options.postcss || {}
 
   return function (files, ms, done) {
     ware()
@@ -53,8 +53,4 @@ function toPostcss (plugins) {
   return Object.keys(plugins).map(function (plugin) {
     return require(plugin)(plugins[plugin])
   })
-}
-
-function postcssDefaults () {
-  return { 'postcss-cssnext': {} }
 }
