@@ -2,7 +2,8 @@
 
 A sensible distribution of [Sass][] for [Metalsmith][].
 
-- combines [metalsmith-sass][] and [metalsmith-autoprefixer][]
+- combines [metalsmith-sass][] and [metalsmith-postcss][]
+- uses [postcss-cssnext][] when available
 - compresses output on production
 - adds source maps in development mode
 - ignores sass partials (`_*.sass`)
@@ -12,7 +13,7 @@ A sensible distribution of [Sass][] for [Metalsmith][].
 Available options:
 
 - `sass` - options to pass to metalsmith-sass.
-- `autoprefixer` - options to pass to metalsmith-autoprefixer.
+- `postcss` - plugins to load for postcss. This is in the format of a key/value object, where keys are string package names, and the values are options to be passed to each plugin.
 
 Environment variables:
 
@@ -21,9 +22,15 @@ Environment variables:
 [Metalsmith]: http://www.metalsmith.io/
 [Sass]: http://sass-lang.com/
 [metalsmith-sass]: https://www.npmjs.com/package/metalsmith-sass
-[metalsmith-autoprefixer]: https://www.npmjs.com/package/metalsmith-autoprefixer
+[metalsmith-postcss]: https://www.npmjs.com/package/metalsmith-postcss
 
 ## Usage
+
+It's recommended to use this with [postcss-cssnext][], which will take care of vendor prefixing.
+
+```sh
+npm install --save metalsmith-sense-sass postcss-cssnext
+```
 
 When using `metalsmith.json`:
 
@@ -42,6 +49,26 @@ var ms = new Metalsmith(__dirname)
   .source('src')
   .destination('public')
   .use(require('metalsmith-sense-sass')())
+```
+
+[postcss-cssnext]: https://www.npmjs.com/package/postcss-cssnext
+
+## Using without postcss-cssnext
+
+If `postcss-cssnext` is not available, it won't be used.
+
+## Using with other postCSS plugins
+
+```js
+var ms = new Metalsmith(__dirname)
+  .source('src')
+  .destination('public')
+  .use(require('metalsmith-sense-sass')({
+    postcss: {
+      'postcss-import': {},
+      'postcss-cssnext': {}
+    }
+  }))
 ```
 
 ## Also see

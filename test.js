@@ -7,7 +7,7 @@ test('metalsmith-sense-sass (development)', function (t) {
   var ms = new Metalsmith('fixtures/basic')
     .source('src')
     .destination('public')
-    .use(sense({ postcss: { 'postcss-cssnext': {} } }))
+    .use(sense())
 
   ms.build(function (err) {
     if (err) t.fail(err)
@@ -32,7 +32,7 @@ test('metalsmith-sense-sass (production)', function (t) {
   var ms = new Metalsmith('fixtures/basic')
     .source('src')
     .destination('public')
-    .use(sense({ postcss: { 'postcss-cssnext': {} } }))
+    .use(sense())
 
   ms.build(function (err) {
     if (err) t.fail(err)
