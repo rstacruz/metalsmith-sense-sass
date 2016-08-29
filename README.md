@@ -1,48 +1,72 @@
 # metalsmith-sense-sass
 
-A sensible distribution of [Sass][] for [Metalsmith][].
+> A sensible distribution of [Sass][] for [Metalsmith][].
 
-- combines [metalsmith-sass][] and [metalsmith-autoprefixer][]
-- compresses output on production
-- adds source maps in development mode
+- uses [metalsmith-sass][] with environment-specific defaults
+	- compresses output on production
+	- adds source maps in development mode
+- uses [metalsmith-postcss][] for optional postcss plugins to be used after Sass
+- uses [postcss-cssnext][] when available (for vendor prefix polyfills and more)
 - ignores sass partials (`_*.sass`)
 
 [![Status](https://travis-ci.org/rstacruz/metalsmith-sense-sass.svg?branch=master)](https://travis-ci.org/rstacruz/metalsmith-sense-sass "See test builds")
 
-Available options:
+## Options
 
-- `sass` - options to pass to metalsmith-sass.
-- `autoprefixer` - options to pass to metalsmith-autoprefixer.
+```js
+require('metalsmith-sense-sass')(options)
+```
 
-Environment variables:
+#### Available options:
 
-- `NODE_ENV` (environment variable) - set to `production` to enable compression and disable source maps.
+- `sass` *(Object)* — Options to pass to metalsmith-sass. See [node-sass][] for a list of available options.
+
+- `postcss` *(Object)* — List of plugins to load for postcss. This is in the format of a key/value object, where keys are string package names, and the values are options to be passed to each plugin.
+
+#### Environment variables:
+
+- `NODE_ENV` *(environment variable)* — set to `production` to enable compression and disable source maps.
 
 [Metalsmith]: http://www.metalsmith.io/
 [Sass]: http://sass-lang.com/
+[node-sass]: https://github.com/sass/node-sass#options
 [metalsmith-sass]: https://www.npmjs.com/package/metalsmith-sass
-[metalsmith-autoprefixer]: https://www.npmjs.com/package/metalsmith-autoprefixer
+[metalsmith-postcss]: https://www.npmjs.com/package/metalsmith-postcss
 
 ## Usage
 
-When using `metalsmith.json`:
+It's recommended to use this with [postcss-cssnext][], which will take care of vendor prefixing.
 
-```json
-{
-  "plugins": {
-    "metalsmith-sense-sass": {}
-  }
-}
+```sh
+npm install --save metalsmith-sense-sass postcss-cssnext
 ```
 
-When using `metalsmith.js`:
+* When using `metalsmith.json`:
 
-```js
-var ms = new Metalsmith(__dirname)
-  .source('src')
-  .destination('public')
-  .use(require('metalsmith-sense-sass')())
-```
+	```json
+	{
+	  "plugins": {
+	    "metalsmith-sense-sass": {}
+	  }
+	}
+	```
+
+* When using `metalsmith.js`:
+
+	```js
+	var ms = new Metalsmith(__dirname)
+	  .source('src')
+	  .destination('public')
+	  .use(require('metalsmith-sense-sass')())
+	```
+
+[postcss-cssnext]: https://www.npmjs.com/package/postcss-cssnext
+
+For other installation options (eg, using other postcss plugins), see [Installation](docs/installation.md).
+
+## Upgrading from 1.x
+
+metalsmith-sense-sass 1.x uses autoprefixer by default, which 2.x doesn't anymore. To upgrade and keep the old behavior, simply install [postcss-cssnext][] in your project—cssnext includes autoprefixer, and metalsmith-sense-sass will automatically use cssnext if it's available.
 
 ## Also see
 
