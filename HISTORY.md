@@ -1,3 +1,11 @@
+## [v2.0.0]
+> Aug 29, 2016
+
+- Use postcss-cssnext instead of autoprefixer.
+- Add support for [node-sass-import] (https://github.com/anarh/node-sass-import).
+
+[v2.0.0]: https://github.com/rstacruz/metalsmith-sense-sass/compare/v1.1.0...v2.0.0
+
 ## [v1.1.0]
 > Jan  5, 2016
 
