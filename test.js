@@ -65,6 +65,22 @@ test('sass import', function (t) {
   })
 })
 
+test('glob import', function (t) {
+  var ms = new Metalsmith('fixtures/sass_glob')
+    .source('src')
+    .destination('public')
+    .use(sense())
+
+  ms.build(function (err) {
+    if (err) t.fail(err)
+    var data = read(ms.path('public/hello.css'))
+
+    t.ok(data.indexOf('div') > -1,
+      'works')
+
+    t.end()
+  })
+})
 
 function read (file) {
   return require('fs').readFileSync(file, 'utf-8')
