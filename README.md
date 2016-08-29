@@ -35,10 +35,8 @@ require('metalsmith-sense-sass')(options)
 
 ## Usage
 
-It's recommended to use this with [postcss-cssnext][], which will take care of vendor prefixing.
-
 ```sh
-npm install --save metalsmith-sense-sass postcss-cssnext
+npm install --save metalsmith-sense-sass
 ```
 
 * When using `metalsmith.json`:
