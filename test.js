@@ -48,6 +48,24 @@ test('metalsmith-sense-sass (production)', function (t) {
   })
 })
 
+test('sass import', function (t) {
+  var ms = new Metalsmith('fixtures/sass_import')
+    .source('src')
+    .destination('public')
+    .use(sense())
+
+  ms.build(function (err) {
+    if (err) t.fail(err)
+    var data = read(ms.path('public/hello.css'))
+
+    t.ok(data.indexOf('font-family') > -1,
+      'normalize.css enabled')
+
+    t.end()
+  })
+})
+
+
 function read (file) {
   return require('fs').readFileSync(file, 'utf-8')
 }

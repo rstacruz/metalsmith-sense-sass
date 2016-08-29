@@ -10,7 +10,7 @@ module.exports = function (options) {
     ware()
       .use(require('metalsmith-ignore')([ '**/_*.{scss,sass}' ]))
       .use(require('metalsmith-sass')(options.sass))
-      .use(require('metalsmith-postcss')(toPostcss(options.postcss)))
+      .use(require('metalsmith-postcss')(options.postcss))
       .run(files, ms, done)
   }
 }
@@ -24,41 +24,21 @@ function sassDefaults () {
     return {
       outputStyle: 'expanded',
       sourceMapEmbed: true,
-      sourcemapContents: true
+      sourcemapContents: true,
+      importer: require('node-sass-import')
     }
   } else {
     return {
       outputStyle: 'compressed',
-      sourceMap: false
+      sourceMap: false,
+      importer: require('node-sass-import')
     }
   }
 }
 
-/*
- * Private: returns an array of postcss plugins.
- *
- *     toPostcss({
- *       'postcss-nested': {},
- *       'postcss-pseudoelements': {}
- *     })
- *
- *     // same as:
- *     [
- *       require('postcss-nested')({}),
- *       require('postcss-pseudoelements')({})
- *     ]
- */
-
-function toPostcss (plugins) {
-  return Object.keys(plugins).map(function (plugin) {
-    return require(plugin)(plugins[plugin])
-  })
-}
-
 function postcssDefaults () {
   try {
-    require.resolve('postcss-cssnext')
-    return { 'postcss-cssnext': {} }
+    return { plugins: { 'postcss-cssnext': {} } }
   } catch (e) {
     return {}
   }
