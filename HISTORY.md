@@ -1,3 +1,10 @@
+## [v2.1.0]
+> Oct 10, 2016
+
+- [node-sass-import] (https://github.com/anarh/node-sass-import) 1.1.0: add support for glob importing.
+
+[v2.1.0]: https://github.com/rstacruz/metalsmith-sense-sass/compare/v2.0.0...v2.1.0
+
 ## [v2.0.0]
 > Aug 29, 2016
 
